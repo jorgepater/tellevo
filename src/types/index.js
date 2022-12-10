@@ -1,1 +1,2 @@
 export const CHANGE_CODE = 'CHANGE_CODE';
+export const VALIDATE_CODE = 'VALIDATE_CODE';

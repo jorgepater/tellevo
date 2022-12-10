@@ -7,9 +7,11 @@ import AuthState from './src/context/authContext/AuthState';
 export default function App() {
   return (
     <NavigationContainer>
-      <AuthState>
-        <SwitchScreenlogin />
-      </AuthState>
+
+        <AuthState>
+          <SwitchScreenlogin />
+        </AuthState>
+
     </NavigationContainer>
   );
 }

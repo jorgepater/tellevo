@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, TextInput } from 'react-native';
 import SelectDropdown from 'react-native-select-dropdown'
 import { AntDesign } from '@expo/vector-icons';
+import { Title } from '../authStyles';
 
 export default function RegistroPersonales(){
 
@@ -10,9 +11,9 @@ export default function RegistroPersonales(){
     return (
         <View>
 
-            <View style={styles.titleView}>
-                <Text style={styles.title}>Registro Personales</Text>
-            </View>
+            <Title>
+                Registro Personales
+            </Title>
 
             <View>
 
@@ -60,29 +61,8 @@ export default function RegistroPersonales(){
 }
 
 const styles = StyleSheet.create({
-    // button: {
-    //     justifyContent: 'center',
-    //     alignItems: 'center',
-    //     backgroundColor: '#5F9DF7',
-    //     width: '100%',
-    //     height: 50,
-    //     borderRadius: 10,
-    // },
     containerinput: {
         marginBottom: 10
-    },
-    titleView: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: '100%',
-        minHeight: 50,
-        backgroundColor: '#5F9DF7',
-        borderRadius: 10,
-        marginBottom: 20
-    },
-    title: {
-        fontSize: 20,
-        color: '#fff'
     },
     input: {
         height: 35,

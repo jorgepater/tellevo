@@ -1,7 +1,8 @@
 import React from 'react';
-import { ScrollView, View, Text, TouchableOpacity, StyleSheet, TextInput } from 'react-native';
+import { View, Text, StyleSheet, TextInput } from 'react-native';
 import SelectDropdown from 'react-native-select-dropdown'
 import { AntDesign } from '@expo/vector-icons';
+import { Title } from '../authStyles';
 
 export default function RegistroDocumento(){
 
@@ -99,9 +100,9 @@ export default function RegistroDocumento(){
 
     return (
         <View>
-            <View style={styles.titleView}>
-                <Text style={styles.title}>Registro Documento</Text>
-            </View>
+            <Title>
+                Registro Documento
+            </Title>
             
             <View style={styles.containerSelect}>
 

@@ -11,8 +11,7 @@ export default function Signup({navigation}){
         <>
             <StatusBar
                 // backgroundColor={'transparent'}
-                translucent={false}
-                style="light"
+                // style="light"
             />
 
             <View style={styles.container}>

@@ -1,14 +1,18 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Login from './Login';
 import Signup from './signup/Signup';
-import RegisterNumber from './signup/RegisterNumber';
+import RegisterNumber from './registerNumber';
 
 const Stack = createNativeStackNavigator();
 
 export default function AuthScreen({setLogin}){
 
     return (
-        <Stack.Navigator>
+        <Stack.Navigator
+            screenOptions={{
+                headerShown: false
+            }}
+        >
             
             <Stack.Screen
                 name='Login'
@@ -21,15 +25,14 @@ export default function AuthScreen({setLogin}){
 
             <Stack.Screen
                 name='Signup'
-                options={{
-                    headerBackVisible: false,
-                    headerShown: false
-                }}
                 >
                 {props => <Signup {...props} />}
             </Stack.Screen>
 
-            <Stack.Screen name='RegisterNumber' component={RegisterNumber}  />
+            <Stack.Screen
+                name='RegisterNumber'
+                component={RegisterNumber}
+            />
 
         </Stack.Navigator>
     )

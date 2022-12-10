@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "tellevo",
-    "slug": "tellevo",
+    "name": "Tllevo",
+    "slug": "Tllevo",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -11,6 +11,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "scheme": "mycoolredirect",
     "updates": {
       "fallbackToCacheTimeout": 0
     },
@@ -18,13 +19,15 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.Tllevo.jp"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.Tllevo.jp"
     },
     "web": {
       "favicon": "./assets/favicon.png"

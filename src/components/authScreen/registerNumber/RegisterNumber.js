@@ -25,6 +25,10 @@ export default function RegisterNumber({sendCode,setSendCode}){
         sendMessage(phoneNumbre);
     }
 
+    function changeColorButton(){
+        return phoneNumbre.trim().length < 10 || phoneNumbre.trim().length > 10 ? 'grey' : '#5F9DF7'
+    }
+
     return (
         <View style={styles.container}>
             <Title>
@@ -48,7 +52,7 @@ export default function RegisterNumber({sendCode,setSendCode}){
                     disabled={sendCode}
                     onPress={onSubmit}
                 >
-                    <View style={styles.button}>
+                    <View style={{...styles.button, backgroundColor: changeColorButton()}}>
                         <Text>Enviar código</Text>
                     </View>
                 </TouchableOpacity>
@@ -66,7 +70,6 @@ const styles = StyleSheet.create({
     button: {
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#5F9DF7',
         width: '100%',
         height: 35,
         borderRadius: 10,

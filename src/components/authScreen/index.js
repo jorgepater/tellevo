@@ -2,6 +2,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Login from './Login';
 import Signup from './signup/Signup';
 import RegisterNumber from './registerNumber';
+import ProtectedAuth from './protectedAuth';
 
 const Stack = createNativeStackNavigator();
 
@@ -26,7 +27,11 @@ export default function AuthScreen({setLogin}){
             <Stack.Screen
                 name='Signup'
                 >
-                {props => <Signup {...props} />}
+                {props => (
+                    <ProtectedAuth {...props}>
+                        <Signup {...props} />
+                    </ProtectedAuth>
+                )}
             </Stack.Screen>
 
             <Stack.Screen

@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { View, Text, StyleSheet, TextInput,TouchableOpacity } from 'react-native';
-import {Title} from '../authStyles';
+import { Title } from '../authStyles';
+import ValidateNumberContext from '../../../context/validateNumberContext/Context';
 
 export default function RegisterNumber({sendCode,setSendCode}){
 
-    const [phoneNumbre, setPhoneNumber] = useState('');
+    const { sendMessage } = useContext(ValidateNumberContext);
 
+    const [phoneNumbre, setPhoneNumber] = useState('');
     const [error, setError] = useState('');
 
     const handleChange = value => {
@@ -20,6 +22,7 @@ export default function RegisterNumber({sendCode,setSendCode}){
         }
 
         setSendCode(true);
+        sendMessage(phoneNumbre);
     }
 
     return (

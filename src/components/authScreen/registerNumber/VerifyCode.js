@@ -1,23 +1,31 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import {Title} from '../authStyles';
+import ValidateNumberContext from '../../../context/validateNumberContext/Context';
 
-export default function VerifyCode(){
+export default function VerifyCode({navigation}){
 
-    const [code, setCode] = useState('');
+    const { code } = useContext(ValidateNumberContext);
+
+    const [valitadeCode, setValitadeCode] = useState('');
     const [error, setError] = useState('');
 
     const onChange = value => {
-        setCode(value)
+        setError('');
+        setValitadeCode(value);
     }
 
     const onSubmit = () => {
 
-        if(code.trim() === '' || code.trim().length < 6 || code.trim().length > 6){
+        if(valitadeCode.trim() === ''
+            || valitadeCode.trim().length < 6
+            || valitadeCode.trim().length > 6
+            || valitadeCode !== code
+        ){
             return setError('Código incorrecto');
         }
 
-
+        navigation.navigate('Signup');
     }
 
     return (
@@ -26,6 +34,8 @@ export default function VerifyCode(){
             <Title>
                 Verificación
             </Title>
+
+            {error && <Text style={styles.error}>{error}</Text>}
 
             <View>
                 <TextInput
@@ -37,10 +47,10 @@ export default function VerifyCode(){
             </View>
 
             <TouchableOpacity
-                    disabled={code.length < 6 || code.length > 6 ? true : false}
+                    disabled={valitadeCode.length < 6 || valitadeCode.length > 6 ? true : false}
                     onPress={onSubmit}
                 >
-                    <View style={{...styles.button, backgroundColor: code.length < 6 || code.length > 6 ? '#989898' : '#5F9DF7'}}>
+                    <View style={{...styles.button, backgroundColor: valitadeCode.length < 6 || valitadeCode.length > 6 ? '#989898' : '#5F9DF7'}}>
                         <Text>Validar</Text>
                     </View>
                 </TouchableOpacity>
@@ -79,4 +89,8 @@ const styles = StyleSheet.create({
         padding: 8,
         marginBottom: 10
     },
+    error: {
+        color: 'red',
+        margin: 5
+    }
 });

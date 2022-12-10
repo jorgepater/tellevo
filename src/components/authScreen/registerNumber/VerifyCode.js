@@ -5,7 +5,7 @@ import ValidateNumberContext from '../../../context/validateNumberContext/Contex
 
 export default function VerifyCode({navigation}){
 
-    const { code } = useContext(ValidateNumberContext);
+    const { code, validateCode } = useContext(ValidateNumberContext);
 
     const [valitadeCode, setValitadeCode] = useState('');
     const [error, setError] = useState('');
@@ -25,6 +25,7 @@ export default function VerifyCode({navigation}){
             return setError('Código incorrecto');
         }
 
+        validateCode();
         navigation.navigate('Signup');
     }
 
@@ -82,7 +83,6 @@ const styles = StyleSheet.create({
     button: {
         justifyContent: 'center',
         alignItems: 'center',
-        // backgroundColor: '#5F9DF7',
         width: '100%',
         height: 35,
         borderRadius: 10,

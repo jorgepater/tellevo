@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput } from 'react-native';
 import SelectDropdown from 'react-native-select-dropdown'
 import { AntDesign } from '@expo/vector-icons';
@@ -17,24 +17,12 @@ export default function RegistroDocumento(){
     });
 
     const [countryAndCity, setCountryAndCity] = React.useState({
-        country: ['Venezuela', 'Colombia', 'Ecuador'],
-        city: ['Bogota', 'Barranquilla', 'Caracas', 'Quito']
+        country: ['Venezuela', 'Colombia'],
+        cityColombia: ['Bogota', 'Barranquilla'],
+        cityVenezuela: ['Caracas']
     });
 
-    const titleRegistro = (selected) => {
-        switch(selected){
-            case 'C.C':
-                return 'Registro Cédula de Ciudadanía';
-            
-            case 'Pasaporte':
-                return 'Registro Pasaporte';
-
-            case 'Licencia':
-                return 'Registro Licencia de conducir';
-            
-            default: return 'Registro no seleccionado';
-        }
-    }
+    const [country, setCountry] = useState('');
 
     const fechas = () => {
         let date = Date();
@@ -185,7 +173,7 @@ export default function RegistroDocumento(){
                             renderDropdownIcon={() => <AntDesign name="down" size={10} color="black" />}
                             data={countryAndCity.country}
                             onSelect={(selectedItem) => {
-                                setSelectedYear(selectedItem)
+                                setCountry(selectedItem)
                             }}
                         />
                     </View>
@@ -198,7 +186,7 @@ export default function RegistroDocumento(){
                             buttonStyle={{...stylesSelects.select, width: '99.9%'}}
                             defaultButtonText='Cuidad'
                             renderDropdownIcon={() => <AntDesign name="down" size={10} color="black" />}
-                            data={countryAndCity.city}
+                            data={country === 'Colombia' ? countryAndCity.cityColombia : countryAndCity.cityVenezuela}
                             onSelect={(selectedItem) => {
                                 setSelectedYear(selectedItem)
                             }}

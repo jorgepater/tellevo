@@ -1,16 +1,24 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import MyTabs from '../MyTabs';
 import AuthScreen from '../authScreen';
+import AuthContext from '../../context/authContext/AuthContext';
+import { Text, View } from 'react-native';
 
 export default function SwitchScreenlogin(){
 
-    const [login, setLogin] = React.useState(false);
+    const { logged, loading } = useContext(AuthContext);
 
-    if(!login){
-        return <AuthScreen setLogin={setLogin} />
+    // if(loading){
+    //     return (
+    //         <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+    //             <Text style={{fontSize: 20}}>Cargando...</Text>
+    //         </View>
+    //     );
+    // }
+    if(!logged){
+        return <AuthScreen />
     }
-
-    else if(login){
+    else if(logged){
         return <MyTabs />
     }
 }

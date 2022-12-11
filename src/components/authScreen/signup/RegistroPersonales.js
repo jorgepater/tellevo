@@ -1,15 +1,21 @@
-import React from 'react';
-import { View, Text, StyleSheet, TextInput } from 'react-native';
+import { View, StyleSheet, TextInput } from 'react-native';
 import SelectDropdown from 'react-native-select-dropdown'
 import { AntDesign } from '@expo/vector-icons';
 import { Title } from '../authStyles';
 
-export default function RegistroPersonales(){
+export default function RegistroPersonales({dataRegister, setDataRegister}){
 
     const dataRegistro = ['C.C', 'Pasaporte', 'Licencia'];
 
+    const handleChange = (name, value) => {
+        setDataRegister({
+            ...dataRegister,
+            [name]: value
+        });
+    }
+
     return (
-        <View>
+        <View style={{marginTop: 60}}>
 
             <Title>
                 Registro Personales
@@ -22,6 +28,7 @@ export default function RegistroPersonales(){
                         style={styles.input}
                         placeholder="Nombres"
                         keyboardType="text"
+                        onChangeText={e => handleChange('names', e)}
                     />
                 </View>
 
@@ -30,6 +37,7 @@ export default function RegistroPersonales(){
                         style={styles.input}
                         placeholder="Apellidos"
                         keyboardType="text"
+                        onChangeText={e => handleChange('lastName', e)}
                     />
                 </View>
 
@@ -42,7 +50,7 @@ export default function RegistroPersonales(){
                         renderDropdownIcon={() => <AntDesign name="down" size={10} color="black" />}
                         data={dataRegistro}
                         onSelect={(selectedItem) => {
-                            console.log(selectedItem)
+                            handleChange('document', selectedItem)
                         }}
                     />
 
@@ -51,6 +59,7 @@ export default function RegistroPersonales(){
                             style={{...styles.input, width: '100%'}}
                             keyboardType='numeric'
                             placeholder='Número'
+                            onChangeText={e => handleChange('numDocument', e)}
                         />
                     </View>
                 </View>

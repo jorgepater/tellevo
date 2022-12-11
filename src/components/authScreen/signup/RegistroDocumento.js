@@ -1,14 +1,10 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TextInput } from 'react-native';
+import { View, Text, StyleSheet, TextInput, Alert } from 'react-native';
 import SelectDropdown from 'react-native-select-dropdown'
 import { AntDesign } from '@expo/vector-icons';
 import { Title } from '../authStyles';
 
-export default function RegistroDocumento(){
-
-    const [selectedDay, setSelectedDay] = React.useState('');
-    const [selectedMonth, setSelectedMonth] = React.useState('');
-    const [selectedYear, setSelectedYear] = React.useState('');
+export default function RegistroDocumento({dataRegister, setDataRegister}){
 
     const [fecha, setFecha] = React.useState({
         day: [],
@@ -85,9 +81,27 @@ export default function RegistroDocumento(){
         }
     }
 
+    const handleChangeSelect = (name, value) => {
+        setDataRegister({
+            ...dataRegister,
+            [name]: value
+        });
+    }
+
+    const onSubmit = () => {
+        if(selectedDay.trim() === ''
+            || selectedMonth.trim() === ''
+            || selectedYear.trim() === ''
+        ){
+            return Alert.alert('Datos de la fecha de expedición vacios');
+        }
+
+        return Alert.alert('Todo salió bien');
+    }
+
 
     return (
-        <View>
+        <View style={styles.container}>
             <Title>
                 Registro Documento
             </Title>
@@ -115,7 +129,7 @@ export default function RegistroDocumento(){
                         renderDropdownIcon={() => <AntDesign name="down" size={10} color="black" />}
                         data={fecha.day}
                         onSelect={(selectedItem) => {
-                            setSelectedDay(selectedItem)
+                            handleChangeSelect('dayExp', selectedItem)
                         }}
                     />
                 </View>
@@ -130,7 +144,7 @@ export default function RegistroDocumento(){
                         renderDropdownIcon={() => <AntDesign name="down" size={10} color="black" />}
                         data={fecha.month}
                         onSelect={(selectedItem) => {
-                            setSelectedMonth(selectedItem)
+                            handleChangeSelect('monthExp', selectedItem)
                         }}
                     />
                 </View>
@@ -145,7 +159,7 @@ export default function RegistroDocumento(){
                         renderDropdownIcon={() => <AntDesign name="down" size={10} color="black" />}
                         data={fecha.year}
                         onSelect={(selectedItem) => {
-                            setSelectedYear(selectedItem)
+                            handleChangeSelect('yearExp', selectedItem)
                         }}
                     />
                 </View>
@@ -173,7 +187,8 @@ export default function RegistroDocumento(){
                             renderDropdownIcon={() => <AntDesign name="down" size={10} color="black" />}
                             data={countryAndCity.country}
                             onSelect={(selectedItem) => {
-                                setCountry(selectedItem)
+                                setCountry(selectedItem);
+                                handleChangeSelect('countryExp', selectedItem);
                             }}
                         />
                     </View>
@@ -188,7 +203,7 @@ export default function RegistroDocumento(){
                             renderDropdownIcon={() => <AntDesign name="down" size={10} color="black" />}
                             data={country === 'Colombia' ? countryAndCity.cityColombia : countryAndCity.cityVenezuela}
                             onSelect={(selectedItem) => {
-                                setSelectedYear(selectedItem)
+                                handleChangeSelect('cityExp', selectedItem)
                             }}
                         />
                     </View>
@@ -199,6 +214,9 @@ export default function RegistroDocumento(){
 }
 
 const styles = StyleSheet.create({
+    container:{
+        marginBottom: 90
+    },
     containerSelect: {
         flexDirection: 'row',
         width: '100%',

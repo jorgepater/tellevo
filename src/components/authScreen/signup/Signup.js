@@ -1,27 +1,47 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {StatusBar} from 'expo-status-bar'
-import { View, StyleSheet} from 'react-native';
+import { View, StyleSheet, ScrollView} from 'react-native';
 import RegistroDocumento from './RegistroDocumento';
 import RegistroPersonales from './RegistroPersonales';
 import Buttons from './Buttons';
 
 export default function Signup({navigation}){
+
+
+    // dayExp significa dia de expedicion, y asi con todos
+    const [dataRegister, setDataRegister] = useState({
+        names: '',
+        lastName: '',
+        document: '',
+        numDocument: '',
+        dayExp: '',
+        monthExp: '',
+        yearExp: '',
+        countryExp: '',
+        cityExp: ''
+    })
     
     return (
         <>
             <StatusBar
-                // backgroundColor={'transparent'}
+                backgroundColor={'transparent'}
                 // style="light"
+                translucent={false}
             />
 
             <View style={styles.container}>
                 <View style={styles.containerform}>
 
-                    <RegistroPersonales />
+                    <ScrollView
+                        showsVerticalScrollIndicator={false}
+                    >
+                        <RegistroPersonales dataRegister={dataRegister} setDataRegister={setDataRegister}/>
 
-                    <RegistroDocumento />
+                        <RegistroDocumento dataRegister={dataRegister} setDataRegister={setDataRegister}/>
 
-                    <Buttons navigation={navigation} />
+                    </ScrollView>
+
+                    <Buttons navigation={navigation} dataRegister={dataRegister} />
 
                 </View>
             </View>

@@ -6,7 +6,7 @@ import ProtectedAuth from './protectedAuth';
 
 const Stack = createNativeStackNavigator();
 
-export default function AuthScreen({setLogin}){
+export default function AuthScreen(){
 
     return (
         <Stack.Navigator
@@ -21,7 +21,7 @@ export default function AuthScreen({setLogin}){
                     headerStyle: {backgroundColor: '#878787'},
                 }}
                 >
-                {props => <Login {...props} setLogin={setLogin}/>}
+                {props => <Login {...props} />}
             </Stack.Screen>
 
             <Stack.Screen

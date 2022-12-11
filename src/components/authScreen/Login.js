@@ -1,7 +1,7 @@
 import { View, StyleSheet, Text, Image, TouchableOpacity } from 'react-native';
-import { Title } from './authStyles';'../../../assets/email.png';
+import { Title } from './authStyles';
 
-export default function Login({setLogin, navigation}){
+export default function Login({navigation}){
 
     return (
         <View style={styles.container}>
@@ -10,9 +10,7 @@ export default function Login({setLogin, navigation}){
                 Registro
             </Title>
 
-            <TouchableOpacity
-                onPress={() => navigation.navigate('RegisterNumber')}
-            >
+            <TouchableOpacity>
                 <View style={styles.button}>
                     <View style={styles.viewImage}>
                         <Image
@@ -59,7 +57,13 @@ export default function Login({setLogin, navigation}){
                 </View>
             </View>
 
-            <Text style={{marginTop: 60}}>
+            <TouchableOpacity
+                onPress={() => navigation.navigate('RegisterNumber')}
+            >
+                <Text style={{textAlign: 'center', marginTop: 30}}>Crear una cuenta</Text>
+            </TouchableOpacity>
+
+            <Text style={{marginTop: 30}}>
                 Al continuar, aceptas recibir llamadas, WhatsApp o SMS de Tllevo y de sus afiliados al número proporcionado, incluso de forma automática.
             </Text>
 

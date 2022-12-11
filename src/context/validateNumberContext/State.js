@@ -10,7 +10,7 @@ const ValidateNumberState = ({children}) => {
     const initialState = {
         code: '',
         validate: false,
-        loading: true
+        loading: true,
     }
 
     const [state, dispatch] = useReducer(ValidateNumberReducer, initialState);
@@ -22,7 +22,7 @@ const ValidateNumberState = ({children}) => {
             dispatch({
                 type: CHANGE_CODE,
                 payload: response.data.code
-            })
+            });
         }
         catch(e){
             console.log(e);
@@ -32,7 +32,7 @@ const ValidateNumberState = ({children}) => {
     const validateCode = () => {
         dispatch({
             type: VALIDATE_CODE
-        })
+        });
     }
 
     return (
@@ -43,7 +43,7 @@ const ValidateNumberState = ({children}) => {
                 loading: state.loading,
 
                 sendMessage,
-                validateCode
+                validateCode,
             }}
         >
             {children}

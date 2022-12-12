@@ -4,18 +4,21 @@ import { NavigationContainer } from '@react-navigation/native';
 import SwitchScreenlogin from './src/components/switchScreen/SwitchScreenlogin';
 import AuthState from './src/context/authContext/AuthState';
 import ValidateNumberState from './src/context/validateNumberContext/State';
+import UserState from './src/context/userContext/UserState';
 
 export default function App() {
   return (
     <NavigationContainer>
 
-        <AuthState>
-          <ValidateNumberState>
-          
-          <SwitchScreenlogin />
+        <ValidateNumberState>
+          <AuthState>
+            <UserState>
+            
+              <SwitchScreenlogin />
 
-          </ValidateNumberState>
-        </AuthState>
+            </UserState>
+          </AuthState>
+        </ValidateNumberState>
 
     </NavigationContainer>
   );

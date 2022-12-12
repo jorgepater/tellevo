@@ -10,10 +10,10 @@ export default function Signup({navigation}){
 
     // dayExp significa dia de expedicion, y asi con todos
     const [dataRegister, setDataRegister] = useState({
-        names: '',
+        firstName: '',
         lastName: '',
-        document: '',
-        numDocument: '',
+        documentType: '',
+        documentNumber: '',
         dayExp: '',
         monthExp: '',
         yearExp: '',

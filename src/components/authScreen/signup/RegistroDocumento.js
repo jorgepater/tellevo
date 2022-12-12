@@ -86,19 +86,8 @@ export default function RegistroDocumento({dataRegister, setDataRegister}){
             ...dataRegister,
             [name]: value
         });
+        console.log(dataRegister);
     }
-
-    const onSubmit = () => {
-        if(selectedDay.trim() === ''
-            || selectedMonth.trim() === ''
-            || selectedYear.trim() === ''
-        ){
-            return Alert.alert('Datos de la fecha de expedición vacios');
-        }
-
-        return Alert.alert('Todo salió bien');
-    }
-
 
     return (
         <View style={styles.container}>

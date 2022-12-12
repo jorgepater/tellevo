@@ -28,7 +28,7 @@ export default function RegistroPersonales({dataRegister, setDataRegister}){
                         style={styles.input}
                         placeholder="Nombres"
                         keyboardType="text"
-                        onChangeText={e => handleChange('names', e)}
+                        onChangeText={e => handleChange('firstName', e)}
                     />
                 </View>
 
@@ -50,7 +50,7 @@ export default function RegistroPersonales({dataRegister, setDataRegister}){
                         renderDropdownIcon={() => <AntDesign name="down" size={10} color="black" />}
                         data={dataRegistro}
                         onSelect={(selectedItem) => {
-                            handleChange('document', selectedItem)
+                            handleChange('documentType', selectedItem)
                         }}
                     />
 
@@ -59,7 +59,7 @@ export default function RegistroPersonales({dataRegister, setDataRegister}){
                             style={{...styles.input, width: '100%'}}
                             keyboardType='numeric'
                             placeholder='Número'
-                            onChangeText={e => handleChange('numDocument', e)}
+                            onChangeText={e => handleChange('documentNumber', e)}
                         />
                     </View>
                 </View>

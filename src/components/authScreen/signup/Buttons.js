@@ -1,20 +1,28 @@
 import { View,StyleSheet, Text, TouchableOpacity, Alert } from "react-native";
 import { MaterialIcons } from '@expo/vector-icons';
 import AuthContext from '../../../context/authContext/AuthContext';
+import ValidateNumberContext from '../../../context/validateNumberContext/Context';
 import { useContext } from "react";
 
 export default function Buttons({dataRegister, navigation: {goBack}}){
 
-    const { login } = useContext(AuthContext);
+    const { signup } = useContext(AuthContext);
+    const { phoneNumber } = useContext(ValidateNumberContext);
 
     const onSubmit = () => {
+        const dateExp = `${dataRegister.dayExp}-${dataRegister.monthExp}-${dataRegister.yearExp}`;
+        
         for(const key in dataRegister){
             const value = dataRegister[key];
             if(value.trim() === '')
                 return Alert.alert('Completa todos los dato');
         }
 
-        login();
+        const userData = {...dataRegister, dateExp, phoneNumber};
+
+        console.log(userData);
+
+        signup(userData);
     }
 
     return (

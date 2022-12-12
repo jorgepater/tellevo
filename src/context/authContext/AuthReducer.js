@@ -6,7 +6,8 @@ export default (state, action) => {
         case LOG_IN: return {
             ...state,
             logged: true,
-            loading: false
+            loading: false,
+            user: action.payload
         }
 
         default: return state;

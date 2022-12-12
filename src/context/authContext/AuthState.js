@@ -3,7 +3,7 @@ import AuthContext from "./AuthContext";
 import AuthReducer from "./AuthReducer";
 import clientAxios from '../../config/axios';
 
-import { LOG_IN } from '../../types';
+import { SIGN_UP, LOG_IN } from '../../types';
 
 export default authState = ({children}) => {
 
@@ -15,19 +15,33 @@ export default authState = ({children}) => {
 
     const [state, dispatch] = useReducer(AuthReducer, initialState);
 
-    const getUser = () => {
+    // const getUser = () => {
 
-    }
+    // }
 
     const signup = async (userData) => {
 
         const response = await clientAxios.post('/user', userData);
-        console.log(response);
+
 
         dispatch({
-            type: LOG_IN,
-            payload: response.data
+            type: SIGN_UP,
+            payload: {...response.data.user, document: response.data.document}
         })
+    }
+
+    const login = async phoneNumber => {
+
+        try{
+            const response = await clientAxios.get(`/user?phoneNumber=${phoneNumber}`);
+    
+            dispatch({
+                type: LOG_IN,
+                payload: {...response.data}
+            });
+        }catch(e){
+            console.log(e)
+        }
     }
 
 
@@ -35,8 +49,10 @@ export default authState = ({children}) => {
         <AuthContext.Provider value={{
             loading: state.loading,
             logged: state.logged,
+            user: state.user,
 
-            signup
+            signup,
+            login
         }}>
             {children}
         </AuthContext.Provider>

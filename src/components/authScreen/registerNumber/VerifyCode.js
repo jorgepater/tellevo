@@ -2,10 +2,14 @@ import React, { useContext, useState } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import {Title} from '../authStyles';
 import ValidateNumberContext from '../../../context/validateNumberContext/Context';
+import AuthContext from '../../../context/authContext/AuthContext';
 
-export default function VerifyCode({navigation}){
+export default function VerifyCode({route, navigation}){
+
+    const {typeOfRegister} = route.params;
 
     const { code, validateCode } = useContext(ValidateNumberContext);
+    const { login } = useContext(AuthContext);
 
     const [valitadeCode, setValitadeCode] = useState('');
     const [error, setError] = useState('');
@@ -23,6 +27,10 @@ export default function VerifyCode({navigation}){
             || valitadeCode !== code
         ){
             return setError('Código incorrecto');
+        }
+
+        if(typeOfRegister === 'signin'){
+            return login();
         }
 
         validateCode();

@@ -10,7 +10,9 @@ export default function Login({navigation}){
                 Registro
             </Title>
 
-            <TouchableOpacity>
+            <TouchableOpacity
+                onPress={() => navigation.navigate('RegisterNumber', {typeOfRegister: 'signin'})}
+            >
                 <View style={styles.button}>
                     <View style={styles.viewImage}>
                         <Image
@@ -58,7 +60,7 @@ export default function Login({navigation}){
             </View>
 
             <TouchableOpacity
-                onPress={() => navigation.navigate('RegisterNumber')}
+                onPress={() => navigation.navigate('RegisterNumber', {typeOfRegister: 'signup'})}
             >
                 <Text style={{textAlign: 'center', marginTop: 30}}>Crear una cuenta</Text>
             </TouchableOpacity>

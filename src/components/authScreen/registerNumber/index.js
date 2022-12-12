@@ -3,16 +3,16 @@ import { View, StyleSheet } from 'react-native';
 import RegisterNumber from './RegisterNumber';
 import VerifyCode from './VerifyCode';
 
-export default function Index({navigation}){
+export default function Index({route, navigation}){
 
     const [sendCode, setSendCode] = useState(false);
 
     return (
         <View style={styles.container}>
 
-            <RegisterNumber sendCode={sendCode} setSendCode={setSendCode} />
+            <RegisterNumber route={route} sendCode={sendCode} setSendCode={setSendCode} />
 
-            {sendCode && <VerifyCode navigation={navigation}/>}
+            {sendCode && <VerifyCode route={route} navigation={navigation}/>}
 
         </View>
     )

@@ -5,7 +5,8 @@ export default (state, action) => {
 
         case CHANGE_CODE: return {
             ...state,
-            code: action.payload
+            code: action.payload.code,
+            phoneNumber: action.payload.phoneNumber
         }
 
         case VALIDATE_CODE: return {

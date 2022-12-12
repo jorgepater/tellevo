@@ -86,7 +86,6 @@ export default function RegistroDocumento({dataRegister, setDataRegister}){
             ...dataRegister,
             [name]: value
         });
-        console.log(dataRegister);
     }
 
     return (

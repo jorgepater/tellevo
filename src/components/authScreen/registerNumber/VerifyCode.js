@@ -8,7 +8,7 @@ export default function VerifyCode({route, navigation}){
 
     const {typeOfRegister} = route.params;
 
-    const { code, validateCode } = useContext(ValidateNumberContext);
+    const { code, validateCode, phoneNumber } = useContext(ValidateNumberContext);
     const { login } = useContext(AuthContext);
 
     const [valitadeCode, setValitadeCode] = useState('');
@@ -30,7 +30,7 @@ export default function VerifyCode({route, navigation}){
         }
 
         if(typeOfRegister === 'signin'){
-            return login();
+            return login(phoneNumber);
         }
 
         validateCode();
@@ -45,6 +45,8 @@ export default function VerifyCode({route, navigation}){
             </Title>
 
             {error && <Text style={styles.error}>{error}</Text>}
+
+            <Text>{code}</Text>
 
             <View>
                 <TextInput

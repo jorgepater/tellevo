@@ -20,8 +20,6 @@ export default function Buttons({dataRegister, navigation: {goBack}}){
 
         const userData = {...dataRegister, dateExp, phoneNumber};
 
-        console.log(userData);
-
         signup(userData);
     }
 
